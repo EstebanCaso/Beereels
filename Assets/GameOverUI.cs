@@ -1,7 +1,11 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Muestra el panel de Game Over y reporta puntaje y tiempo.
+/// Los botones del panel (Restart, Main Menu) se conectan en el Inspector
+/// directamente a GameManager.RestartRun() y GameManager.LoadMainMenu().
+/// </summary>
 public class GameOverUI : MonoBehaviour
 {
     [Header("Referencias")]
@@ -11,20 +15,15 @@ public class GameOverUI : MonoBehaviour
 
     void Start()
     {
-        gameOverPanel.SetActive(false);
-        GameManager.Instance.onGameOver.AddListener(ShowGameOver);
+        if (gameOverPanel != null) gameOverPanel.SetActive(false);
+        if (GameManager.Instance != null)
+            GameManager.Instance.onGameOver.AddListener(ShowGameOver);
     }
 
-    void ShowGameOver()
+    public void ShowGameOver()
     {
-        gameOverPanel.SetActive(true);
-        scoreText.text = $"Score: {GameManager.Instance.GetScore():F0}";
-        timeText.text = $"Tiempo: {GameManager.Instance.GetSurvivalTime():F1}s";
-    }
-
-    public void RestartGame()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (gameOverPanel != null) gameOverPanel.SetActive(true);
+        if (scoreText != null) scoreText.text = $"Score: {GameManager.Instance.GetScore():F0}";
+        if (timeText != null) timeText.text = $"Tiempo: {GameManager.Instance.GetSurvivalTime():F1}s";
     }
 }
