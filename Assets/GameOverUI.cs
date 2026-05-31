@@ -22,6 +22,7 @@ public class GameOverUI : MonoBehaviour
 
     public void ShowGameOver()
     {
+        HandPointerManager.Instance.SetPointersActive(true);
         if (gameOverPanel != null) gameOverPanel.SetActive(true);
         if (scoreText != null) scoreText.text = $"Score: {GameManager.Instance.GetScore():F0}";
         if (timeText != null) timeText.text = $"Tiempo: {GameManager.Instance.GetSurvivalTime():F1}s";

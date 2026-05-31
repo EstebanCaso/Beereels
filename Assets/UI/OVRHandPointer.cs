@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
 
 /// <summary>
 /// Apunta a Canvas world-space con la pose del OVRHand y dispara clicks
@@ -245,5 +247,10 @@ public class OVRHandPointer : MonoBehaviour
     {
         if (aimLine != null) aimLine.enabled = false;
         if (reticle != null) reticle.gameObject.SetActive(false);
+    }
+    public void SetActive(bool active)
+    {
+        enabled = active;
+        if (!active) HideVisuals();
     }
 }

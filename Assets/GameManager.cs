@@ -82,6 +82,7 @@ public class GameManager : MonoBehaviour
     }
     public void RestartRun()
     {
+        HandPointerManager.Instance.SetPointersActive(false);
         Time.timeScale = 1f;
         UnityEngine.SceneManagement.SceneManager.LoadScene(
             UnityEngine.SceneManagement.SceneManager.GetActiveScene().name
